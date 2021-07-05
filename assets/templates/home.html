@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll App</title>
+</head>
+<body>
+    <h1>Welcome to poll application </h1>
+    {{if .UserLoggedIn}}
+    
+    <p>You're logged in, Welcome</p>
+    <p><a href="/logout/">Logout</a></p>
+    <p><a href="/create/question/">Create Question</a></p>
+    <p><a href="/get/question/">List of Question</a></p>
+    {{else}}
+    <p>
+        <a href="/login/">Login</a> | 
+        <a href="/signup/">Signup</a>
+    </p>
+    {{end}}
+
+    
+</body>
+</html>

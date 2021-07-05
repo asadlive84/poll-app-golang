@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <a href="/">back to home</a>
+    <p><a href="/signup/">Signup for new usr</a></p>
+    <h1>Login</h1>
+    
+    
+
+    <div>
+        <form action="/login/" method="post">
+            {{.CSRFField}}
+            <div>
+                <label for="Email">Email</label>
+                <input type="email" name="Email" id="" value="{{.Form.Email}}">
+                {{with .FormErrors.Email}}
+                    <p>{{.}}</p>
+                {{end}}
+            </div>
+
+            <div>
+                <label for="Password">Password</label>
+                <input type="password" name="Password" id="">
+                {{with .FormErrors.Password}}
+                    <p>{{.}}</p>
+                {{end}}
+            </div>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>

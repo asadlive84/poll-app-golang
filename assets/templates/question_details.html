@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question: {{.Question.QuestionText}}</title>
+</head>
+<body>
+    <a href="/">back to home</a> | 
+    <a href="/get/question/">back to question list</a> | 
+    <a href="/update/question/{{.Question.ID}}/">Update</a> |
+    <a href="/question/create/choice/{{.Question.ID}}/">add MCQ </a> 
+    <h2>Question: {{.Question.QuestionText}}</h2>
+    <p>created: <i>{{.Question.CreatedAt}}</i></p>
+
+
+    <form action="/get/question/vote/{{.Question.ID}}/" method="post">
+        {{.CSRFField}}
+        <input type="hidden" name="UserID" value="{{.UserId}}">
+        {{range $index, $value := .Choices}}
+            <input type="hidden" name="Votes" value="{{ $value.Votes }}">
+            <input type="radio" name="ID" id="choice{{$index}}" value="{{ $value.ID }}">
+            <label for="choice{{$index}}">{{ $value.ChoiceText }} | Votes -{{ $value.Votes }}</label><br>
+            <a href="/question/update/choice/{{$value.QuestionID}}/{{ $value.ID }}/">update</a>
+            <br>    
+        {{end}}
+
+        <input type="submit" value="Vote"/>
+    </form>
+</body>
+</html>

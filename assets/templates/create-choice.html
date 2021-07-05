@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">back to home</a> | 
+    <a href="/get/question/">back to question list</a> | 
+    <a href="/get/question/{{.QuesionDetails.ID}}/">back to the question</a>
+    <p>Add MCQ: </p>
+    <h2>Q: {{.QuesionDetails.QuestionText}}</h2>
+    <form action="/question/create/choice/{{.QuesionDetails.ID}}/" method="post">
+        {{.CSRFField}}
+        <label for="ChoiceText">Choice Text</label>
+        <input type="text" name="ChoiceText" id="" value="{{.Form.ChoiceText}}">
+        {{with .FormErrors.ChoiceText}}
+            <p>{{.}}</p>
+        {{end}}
+
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
